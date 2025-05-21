@@ -1,0 +1,137 @@
+---
+title: "From Deprivation to Degree: Exploring the Impact of Local Income Levels on Youth Education in England"
+author: Ruyu Li
+
+
+format: 
+  html:
+    fontsize: 13pt 
+    toc: true
+    toc-title: Contents
+    theme: cosmo
+    citation-hover: true
+    crossrefs-hover: true
+    code-overflow: wrap
+    anchor-sections: true
+    df-print: kable
+  pdf:
+    toc: true
+    pdf-engine: xelatex
+    toc-title: Contents
+    papersize: a4
+    linestretch: 1.25
+    geometry: 
+      - top=20mm
+      - bottom=20mm
+      - left=20mm
+      - right=20mm
+    fontsize: 11pt
+    df-print: kable
+  
+knitr:
+  opts_chunk:
+    out.width: "70%"
+    fig.align: "center"
+execute: 
+  code-overlay:
+    margin: "auto"
+
+crossref: 
+  fig-title: Figure
+  tbl-title: Table
+  fig-prefix: Figure
+  tbl-prefix: :Table
+  labels: arabic
+
+embed-resources: true
+fig-cap-location: bottom
+number-sections: true
+editor: visual
+---
+
+## 
+
+```{r}
+#| include: false
+#| message: false
+#| warning: false
+#| df-print: kable
+
+library(dplyr)
+library(ggplot2)
+library(readr)
+library(dplyr)
+library(tidyr)
+```
+
+```{r}
+#| warning: false
+#| mmessage: false
+#| echo: true
+edu_df <- read.csv("data/english_education.csv")
+
+```
+
+# Result
+
+```{r}
+#| echo: true
+#| layout-ncol: 1
+#| label: fig-income-education
+#| fig-cap: "Educational Attainment by Income Deprivation Level (Cities Excluded)"
+#| fig-subcap:
+#| - "Comparison of educational outcomes across income deprivation levels"
+
+edu_df_clean <- edu_df %>%
+  filter(income_flag != "Cities") %>%
+  drop_na(level_3_at_age_18,
+          activity_at_age_19_full_time_higher_education,
+          highest_level_qualification_achieved_by_age_22_level_6_or_above) %>%
+  mutate(income_flag = factor(income_flag,
+                              levels = c("Higher deprivation towns",
+                                         "Mid deprivation towns",
+                                         "Lower deprivation towns")))
+
+summary_df <- edu_df_clean %>%
+  group_by(income_flag) %>%
+  summarise(
+    level3 = mean(level_3_at_age_18, na.rm = TRUE),
+    uni19 = mean(activity_at_age_19_full_time_higher_education, na.rm = TRUE),
+    level6 = mean(highest_level_qualification_achieved_by_age_22_level_6_or_above, na.rm = TRUE)
+  ) %>%
+  pivot_longer(
+    cols = c(level3, uni19, level6),
+    names_to = "education_stage",
+    values_to = "mean_value"
+  )
+
+ggplot(summary_df, aes(x = income_flag, y = mean_value, fill = education_stage)) +
+  geom_col(position = "dodge", width = 0.7) +
+  scale_fill_manual(
+    values = c("level3" = "#4C72B0",
+               "uni19" = "#55A868",
+               "level6" = "#C44E52"),
+    labels = c("Level 3 at Age 18", "University at 19", "Level 6+ by Age 22")
+  ) +
+  labs(
+    x = "Income Deprivation Group",
+    y = "Average Proportion",
+    fill = "Education Stage"
+  ) +
+  theme_minimal()
+
+```
+
+-   *As shown in @fig-income-education, educational attainment increases consistently as income deprivation decreases. Towns with lower deprivation have the highest average proportions of students who achieved Level 3 qualifications at age 18, entered university at age 19, and obtained Level 6 or higher qualifications by age 22. In contrast, higher deprivation towns show substantially lower attainment at each stage. The difference is most pronounced at the higher education level, where the gap between high and low deprivation towns exceeds 10 percentage points. This indicates a strong association between local income levels and long-term educational outcomes among young people.*
+
+# Citation
+
+Wickham H, François R, Henry L, Müller K, Vaughan D (2023). *dplyr: A Grammar of Data Manipulation*. R package version 1.1.4, <https://CRAN.R-project.org/package=dplyr>.
+
+H. Wickham. ggplot2: Elegant Graphics for Data Analysis. Springer-Verlag New York, 2016.
+
+Wickham H, Hester J, Bryan J (2024). *readr: Read Rectangular Text Data*. R package version 2.1.5, <https://CRAN.R-project.org/package=readr>.
+
+Wickham H, François R, Henry L, Müller K, Vaughan D (2023). *dplyr: A Grammar of Data Manipulation*. R package version 1.1.4, <https://CRAN.R-project.org/package=dplyr>.
+
+Wickham H, Vaughan D, Girlich M (2024). *tidyr: Tidy Messy Data*. R package version 1.3.1, <https://CRAN.R-project.org/package=tidyr>.

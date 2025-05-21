@@ -1,0 +1,33 @@
+{
+    "id": "501144E6",
+    "path": "C:/assignment-3-reproducible-reporting-r-you-ready/assignment3.qmd",
+    "project_path": "assignment3.qmd",
+    "type": "quarto_markdown",
+    "hash": "316468235",
+    "contents": "",
+    "dirty": false,
+    "created": 1747805242425.0,
+    "source_on_save": false,
+    "relative_order": 1,
+    "properties": {
+        "rmdVisualMode": "false",
+        "rmdVisualWrapConfigured": "true",
+        "tempName": "Untitled1",
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "0,0",
+        "scrollLine": "14",
+        "docOutlineVisible": "1",
+        "rmdVisualCollapsedChunks": "",
+        "rmdVisualModeLocation": "2:325.9259338378906",
+        "quartoPreviewFormat": "pdf"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1747805266,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1747805266255,
+    "read_only": false,
+    "read_only_alternatives": []
+}
