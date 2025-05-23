@@ -150,6 +150,12 @@ kable(table1, digits = 2) %>%
 
 ```
 
+@tbl-edu_means_by_income shows that education outcomes improve significantly at all measured stages as income levels rise.
+
+For instance, the mean proportion of individuals achieving Level 3 qualifications by age 18 rises from 41.59% in higher deprivation towns to 57.96% in lower deprivation towns. Similar upward trends are observed for higher education participation at age 19 (27.13% to 40.78%) and for achieving Level 6 qualifications by age 22 (23.99% to 35.68%).
+
+The standard deviations are relatively consistent across groups. This suggests that while variation exists, the overall improvement in outcomes is not due to a small number of high performers.
+
 ```{r}
 #| label: fig-edu_outcomes_boxplot
 #| fig-cap: "Educational Outcomes by Income Group(Cities Excluded)"
@@ -182,6 +188,12 @@ ggplot(edu_long, aes(x = income_flag, y = value, fill = income_flag)) +
   theme_minimal()+
   theme(axis.text.x = element_text(size = 9, lineheight = 1.1))
 ```
+
+@fig-edu_outcomes_boxplot illustrates a clear upward trend in educational attainment as town income levels increase. In all three stages, young people in lower deprivation towns consistently outperform their peers in higher deprivation towns.
+
+Specifically, the median proportions of youth achieving Level 3 qualifications at age 18, participating in full-time higher education at age 19, and attaining Level 6 qualifications by age 22 are all higher in towns with lower deprivation. The interquartile ranges are also narrower in lower deprivation towns, suggesting more consistent performance within these areas.
+
+In contrast, higher deprivation towns exhibit not only lower median outcomes but also greater variability, as reflected by the wider spread of the boxplots and more outliers.
 
 # Result
 
@@ -229,7 +241,13 @@ ggplot(summary_df, aes(x = income_flag, y = mean_value, fill = education_stage))
   theme(axis.text.x = element_text(size = 9))
 ```
 
-*As shown in @fig-income-education, educational attainment increases consistently as income deprivation decreases. Towns with lower deprivation have the highest average proportions of students who achieved Level 3 qualifications at age 18, entered university at age 19, and obtained Level 6 or higher qualifications by age 22. In contrast, higher deprivation towns show substantially lower attainment at each stage. The difference is most pronounced at the higher education level, where the gap between high and low deprivation towns exceeds 10 percentage points. This indicates a strong association between local income levels and long-term educational outcomes among young people.*
+As shown in Figure @fig-income-education-by-size, educational attainment increases consistently as income deprivation decreases, across all town sizes. Towns with lower deprivation levels demonstrate the highest average proportions of students achieving Level 3 qualifications at age 18, entering university at age 19, and obtaining Level 6 or higher qualifications by age 22.
+
+This pattern holds for large, medium, and small towns, though the gap between high and low deprivation groups appears most pronounced in small towns, particularly at the Level 6+ stage. In small towns, the difference in university attainment between high and low deprivation groups exceeds 10 percentage points.
+
+These results reinforce a strong association between local income levels and youth educational outcomes, and suggest that deprivation may have an even stronger impact in smaller towns.
+
+
 
 # Citation
 
