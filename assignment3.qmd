@@ -67,7 +67,9 @@ library(tidyr)
 ```
 
 # Data Loading
+
 In this study, our group chose to download the dataset locally rather than relying on an online dataset. This approach improves the reproducibility of the analysis because local data ensures continuous access to a stable version of the data and avoids remote sources updating or deleting the data resulting in different analysis results. Also, local datasets are more stable as they do not rely on a network connection, which avoids interruptions due to application program interface limitations or network problems. It also improves processing speed and supports offline analysis, which is essential for a reliable and efficient research workflow.
+
 ```{r data loading}
 edu_df <- read.csv("data/english_education.csv")
 ```
@@ -123,6 +125,22 @@ ggplot(summary_df, aes(x = income_flag, y = mean_value, fill = education_stage))
 ```
 
 -   *As shown in @fig-income-education, educational attainment increases consistently as income deprivation decreases. Towns with lower deprivation have the highest average proportions of students who achieved Level 3 qualifications at age 18, entered university at age 19, and obtained Level 6 or higher qualifications by age 22. In contrast, higher deprivation towns show substantially lower attainment at each stage. The difference is most pronounced at the higher education level, where the gap between high and low deprivation towns exceeds 10 percentage points. This indicates a strong association between local income levels and long-term educational outcomes among young people.*
+
+# Discussion
+
+Our findings show a clear trend: towns with lower income deprivation consistently achieve higher educational outcomes at ages 18, 19, and 22. This pattern is supported by recent ONS research, which found that students in less deprived and smaller towns tend to perform better academically. The contrast is especially strong by age 22, where the attainment gap is most pronounced.
+
+# Conclusion
+
+There is a strong association between local income deprivation and long-term educational attainment. Structural disadvantages appear to accumulate over time, underscoring the need to address educational inequality at the regional level.
+
+# Recommendations
+
+Increase educational support in high-deprivation areas.
+
+Expand access programs to encourage university progression.
+
+Incorporate income deprivation metrics into education policy and resource allocation.
 
 # Citation
 
