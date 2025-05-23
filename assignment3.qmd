@@ -67,13 +67,10 @@ library(tidyr)
 ```
 
 # Data Loading
-
+In this study, our group chose to download the dataset locally rather than relying on an online dataset. This approach improves the reproducibility of the analysis because local data ensures continuous access to a stable version of the data and avoids remote sources updating or deleting the data resulting in different analysis results. Also, local datasets are more stable as they do not rely on a network connection, which avoids interruptions due to application program interface limitations or network problems. It also improves processing speed and supports offline analysis, which is essential for a reliable and efficient research workflow.
 ```{r data loading}
 edu_df <- read.csv("data/english_education.csv")
 ```
-
-
-
 
 # Result
 
