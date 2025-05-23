@@ -94,7 +94,7 @@ edu_df <- read.csv("data/english_education.csv")
 
 # Dataset introduction
 
-We use the english_education.csv dataset from the [TidyTuesday](https://github.com/rfordatascience/tidytuesday/blob/main/data/2024/2024-01-23/english_education.csv), which contains education and deprivation data for over 1,000 English towns. It includes over 1,000 observations at the town level and features variables such as income_flag, level_3_at_age_18 variables and so on, see @tbl-tables. The dataset is suitable for examining how structural income deprivation may affect academic progression among young people. The original data has been archived in the project repository and here is [the location of the data.](data/english_education.csv)
+We use the english_education.csv dataset from the [TidyTuesday](https://github.com/rfordatascience/tidytuesday/blob/main/data/2024/2024-01-23/english_education.csv), which contains education and deprivation data for over 1,000 English towns. It includes over 1,000 observations at the town level and features variables such as income_flag, level_3_at_age_18 variables and so on. see @tbl-tables, The variables listed here represent a selected subset of those most relevant to our analysis. The dataset is suitable for examining how structural income deprivation may affect academic progression among young people. The original data has been archived in the project repository and here is [the location of the data.](data/english_education.csv)
 
 ```{r}
 #| warning: false
