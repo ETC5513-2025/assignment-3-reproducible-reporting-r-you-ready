@@ -4,6 +4,6 @@ Group Members:
 
 *
 *
-*
+* Vicky Feng
 
-Topic: 
+Topic: The Relationship Between Local Income Levels on Youth Education

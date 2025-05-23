@@ -1,6 +1,6 @@
 ---
 title: "From Deprivation to Degree: Exploring the Impact of Local Income Levels on Youth Education in England"
-author: Ruyu Li
+author: Group R you OK? 
 
 
 format: 
@@ -49,14 +49,16 @@ number-sections: true
 editor: visual
 ---
 
-## 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE,
+  warning = FALSE,
+  results = TRUE,
+  message = FALSE,
+  )
+```
 
-```{r}
-#| include: false
-#| message: false
-#| warning: false
-#| df-print: kable
-
+```{r package loading, include=FALSE}
 library(dplyr)
 library(ggplot2)
 library(readr)
@@ -64,13 +66,14 @@ library(dplyr)
 library(tidyr)
 ```
 
-```{r}
-#| warning: false
-#| mmessage: false
-#| echo: true
-edu_df <- read.csv("data/english_education.csv")
+# Data Loading
 
+```{r data loading}
+edu_df <- read.csv("data/english_education.csv")
 ```
+
+
+
 
 # Result
 
