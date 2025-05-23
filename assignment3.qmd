@@ -66,12 +66,66 @@ library(dplyr)
 library(tidyr)
 ```
 
+# Executive summary
+
+This report explores the relationship between local income deprivation and educational attainment among young people aged 18 to 22 in England. Using national town-level data, we examine qualification rates at three key life stages: age 18 (Level 3), 19 (university entry), and 22 (Level 6+). The results show a clear trend: educational outcomes improve as deprivation decreases, with the most pronounced differences observed by age 22. These findings highlight the long-term impact of regional inequality on youth development and underscore the need for targeted educational support in deprived areas.
+
+# Introduction
+
+Understanding how local income levels influence educational outcomes is critical for addressing regional inequality in England. This report explores whether town-level income deprivation affects academic achievement among young people aged 18 to 22.
+
+We focus on three key outcome variables: Level 3 qualification at age 18, full-time university participation at age 19, and Level 6 or above qualification by age 22. These milestones are selected under the assumption that they represent a logical progression from secondary to higher education, aligning with national benchmarks for long-term attainment. To maintain analytical consistency, cities are excluded from the dataset. Cities differ markedly from towns in terms of population density, education infrastructure, and socio-economic complexity, which could introduce confounding effects.
+
+By analyzing average attainment across these groups, we aim to assess whether structural income disparities limit academic progression. This study contributes to the understanding of regional educational inequality and may inform targeted policy interventions. Our findings have implications for educational equity and the design of place-based support strategies.
+
 # Data Loading
 
 In this study, our group chose to download the dataset locally rather than relying on an online dataset. This approach improves the reproducibility of the analysis because local data ensures continuous access to a stable version of the data and avoids remote sources updating or deleting the data resulting in different analysis results. Also, local datasets are more stable as they do not rely on a network connection, which avoids interruptions due to application program interface limitations or network problems. It also improves processing speed and supports offline analysis, which is essential for a reliable and efficient research workflow.
 
 ```{r data loading}
 edu_df <- read.csv("data/english_education.csv")
+```
+
+# Dataset introduction
+
+We use the english_education.csv dataset from the [TidyTuesday](https://github.com/rfordatascience/tidytuesday/blob/main/data/2024/2024-01-23/english_education.csv), which contains education and deprivation data for over 1,000 English towns. It includes over 1,000 observations at the town level and features variables such as income_flag, level_3_at_age_18 variables and so on, see @tbl-tables. The dataset is suitable for examining how structural income deprivation may affect academic progression among young people. The original data has been archived in the project repository and here is [the location of the data.](data/english_education.csv)
+
+```{r}
+#| warning: false
+#| mmessage: false
+#| echo: true
+#| label: tbl-tables
+#| tbl-cap: 
+#| - "This table contains the key variables used in the analysis along with their descriptions"
+
+
+edu_variable_desc <- data.frame(
+  Variable = c(
+    "income_flag",
+    "level_3_at_age_18",
+    "activity_at_age_19_full_time_higher_education",
+    "highest_level_qualification_achieved_by_age_22_level_6_or_above",
+    "size_flag",
+    "coastal",
+    "job_density_flag"
+  ),
+  Description = c(
+    "Categorical income deprivation classification of the town (lower/mid/higher). Used as the independent grouping variable.",
+    "Proportion of young people in the 2012/13 cohort who achieved Level 3 qualifications at age 18.",
+    "Proportion of the cohort who entered full-time higher education by age 19.",
+    "Proportion of the cohort who attained Level 6 or above qualifications (e.g., Bachelor's degree) by age 22.",
+    "Town/city size classification based on 2011 census data (used to identify and exclude cities).",
+    "Indicator whether a town is coastal, used to flag unique geographic features.",
+    "Describes whether a town is primarily residential, working, or mixed in function."
+  )
+)
+
+knitr::kable(
+  edu_variable_desc,
+  col.names = c("Variable Names", "Variable Description"),
+  align = c("l", "r"),
+  booktabs = TRUE
+)
 ```
 
 # Result
