@@ -1,5 +1,0 @@
-"0","#| warning: false"
-"0","#| mmessage: false"
-"0","#| echo: true"
-"0","edu_df <- read.csv(""data/english_education.csv"")"
-"0",""
