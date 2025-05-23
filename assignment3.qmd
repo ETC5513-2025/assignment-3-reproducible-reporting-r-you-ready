@@ -72,11 +72,17 @@ This report explores the relationship between local income deprivation and educa
 
 # Introduction
 
-Understanding how local income levels influence educational outcomes is critical for addressing regional inequality in England. This report explores whether town-level income deprivation affects academic achievement among young people aged 18 to 22.
+Understanding how local income levels influence educational outcomes is critical for addressing regional inequality in England. This report explores whether town-level income deprivation affects academic achievement among young people.
 
-We focus on three key outcome variables: Level 3 qualification at age 18, full-time university participation at age 19, and Level 6 or above qualification by age 22. These milestones are selected under the assumption that they represent a logical progression from secondary to higher education, aligning with national benchmarks for long-term attainment. To maintain analytical consistency, cities are excluded from the dataset. Cities differ markedly from towns in terms of population density, education infrastructure, and socio-economic complexity, which could introduce confounding effects.
+We focus on three key outcome variables: Level 3 qualification at age 18, full-time university participation at age 19, and Level 6 or above qualification by age 22. These milestones are selected under the assumption that they represent a logical progression from secondary to higher education, aligning with national benchmarks for long-term attainment.
 
-By analyzing average attainment across these groups, we aim to assess whether structural income disparities limit academic progression. This study contributes to the understanding of regional educational inequality and may inform targeted policy interventions. Our findings have implications for educational equity and the design of place-based support strategies.
+To maintain analytical consistency, cities are excluded from the dataset. Cities differ markedly from towns in terms of population density, education infrastructure, and socio-economic complexity, which could introduce confounding effects.
+
+By analyzing average attainment across these groups, we aim to assess whether structural income disparities limit academic progression. This study contributes to the understanding of regional educational inequality and may inform targeted policy interventions.
+
+# Research Question
+
+Does the income level of a town affect the educational outcomes of young people?
 
 # Data Loading
 
@@ -127,6 +133,27 @@ knitr::kable(
   booktabs = TRUE
 )
 ```
+
+## Dataset Description
+
+The dataset contains a total of `r nrow(edu_df)` observations and `r ncol(edu_df)`variables.
+
+![Inline R code](images/inline_code.png){#fig-inlinecode}
+
+See @fig-inlinecode for the detail of the *Inline R code* used.
+
+```{r}
+#| warning: false
+#| message: false
+#| label: tbl-tableone
+#| tbl-cap: "First 2 rows of the data"
+#| include: true
+#| df-print: kable
+
+head(edu_df, 2)
+```
+
+See @tbl-tableone for the detail of the first 2 rows of the data and the types of variables in the dataset.
 
 # Result
 
