@@ -126,18 +126,14 @@ edu_variable_desc <- data.frame(
     "level_3_at_age_18",
     "activity_at_age_19_full_time_higher_education",
     "highest_level_qualification_achieved_by_age_22_level_6_or_above",
-    "size_flag",
-    "coastal",
-    "job_density_flag"
+    "size_flag"
   ),
   Description = c(
     "Categorical income deprivation classification of the town (lower/mid/higher). Used as the independent grouping variable.",
     "Proportion of young people in the 2012/13 cohort who achieved Level 3 qualifications at age 18.",
     "Proportion of the cohort who entered full-time higher education by age 19.",
     "Proportion of the cohort who attained Level 6 or above qualifications (e.g., Bachelor's degree) by age 22.",
-    "Town/city size classification based on 2011 census data (used to identify and exclude cities).",
-    "Indicator whether a town is coastal, used to flag unique geographic features.",
-    "Describes whether a town is primarily residential, working, or mixed in function."
+    "Town/city size classification based on 2011 census data (used to identify and exclude cities)."
   )
 )
 
