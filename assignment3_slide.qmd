@@ -1,0 +1,83 @@
+---
+title: "From Deprivation to Degree"
+subtitle: "How Income Affects Youth Education in English Towns"
+author: "Group R you OK?"
+format:
+  revealjs:
+    theme: [default, custom.scss]
+    slide-number: true
+    toc: true
+    incremental: true
+    transition: slide
+    center: true
+    embed-resources: true
+execute:
+  echo: false
+  warning: false
+  message: false
+
+---
+## 
+
+
+
+
+---
+
+## Introduction
+
+
+---
+
+## Research Question
+
+**Does the income level of a town affect the educational outcomes of young people?**
+
+
+---
+
+## Data Overview
+
+
+
+---
+
+## Variables and Dataset Description
+
+
+
+---
+
+## 
+
+
+---
+
+## 
+
+
+---
+
+## Key Findings
+
+
+
+---
+
+## Policy Implications
+
+
+
+---
+
+## Conclusion
+
+
+
+---
+
+## Thank You 🙏
+
+**Group R you OK?**  
+- Presentation done!  
+- Questions welcome.
