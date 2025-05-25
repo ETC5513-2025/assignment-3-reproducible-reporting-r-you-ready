@@ -1,36 +1,28 @@
 ---
-title: "From Deprivation to Degree: Exploring the Impact of Local Income Levels on Youth Education in England"
+title: "From Deprivation to Degree"
+subtitle: "Exploring the Impact of Local Income Levels on Youth Education in England"
 author: Group R you OK? 
 
-format: 
+format:
   html:
-    fontsize: 13pt 
+    theme: cosmo
     toc: true
     toc-title: Contents
-    theme: cosmo
+    code-overflow: wrap
     citation-hover: true
     crossrefs-hover: true
-    code-overflow: wrap
     anchor-sections: true
-    df-print: kable
+    highlight-style: github
+    css: ../tex/styles.css
   pdf:
-    toc: true
+    template: ../tex/elegantpaper-pandoc.tex
     pdf-engine: xelatex
-    toc-title: Contents
-    papersize: a4
-    linestretch: 1.25
-    geometry: 
-      - top=20mm
-      - bottom=20mm
-      - left=20mm
-      - right=20mm
+    toc: true
+    number-sections: true
     fontsize: 11pt
-    df-print: kable
-  
-knitr:
-  opts_chunk:
-    out.width: "70%"
-    fig.align: "center"
+    linestretch: 1.3
+    mainfont: "TeX Gyre Pagella"
+
 execute: 
   code-overlay:
     margin: "auto"
@@ -39,7 +31,7 @@ crossref:
   fig-title: Figure
   tbl-title: Table
   fig-prefix: Figure
-  tbl-prefix: :Table
+  tbl-prefix: Table
   labels: arabic
 
 embed-resources: true
@@ -72,6 +64,8 @@ library(knitr)
 library(kableExtra)
 ```
 
+\newpage
+
 # Executive summary
 
 This report investigates **how town-level income deprivation affects educational attainment among English youth aged 18 to 22**. Using national data, we analyze academic outcomes at three life stages: Level 3 qualification at 18, university entry at 19, and Level 6+ attainment by 22. Results show a clear upward trend—youth from lower deprivation towns consistently outperform those from higher deprivation areas, especially by age 22. These findings highlight structural inequalities and suggest the need for targeted educational support in deprived communities.
@@ -97,7 +91,7 @@ In this study, our group chose to **download the dataset locally** rather than r
 We use the english_education.csv dataset downloading from the [TidyTuesday](https://github.com/rfordatascience/tidytuesday/blob/main/data/2024/2024-01-23/english_education.csv), originally sourced from [The UK Office for National Statistics (ONS)](https://www.ons.gov.uk/). The dataset contains education and deprivation data for over 1,000 English towns, offering town-level observations across key variables such as `income_flag`, `size_flag`, `level_3_at_age_18`, `activity_at_age_19_full_time_higher_education`, and `highest_level_qualification_achieved_by_age_22_level_6_or_above2`. These indicators provide a robust basis for analyzing **educational progression** in relation to **local income deprivation**.
 
 ```{r data loading}
-edu_df <- read_csv("data/english_education.csv")
+edu_df <- read_csv("../data/english_education.csv")
 ```
 
 ```{r related variables chosen}
@@ -110,14 +104,19 @@ selected_vars <- c(
 )
 
 edu_df_selected <- edu_df %>%
-  select(all_of(selected_vars))
+  select(all_of(selected_vars))%>%
+  rename(
+    level3_at_18 = level_3_at_age_18,
+    uni_at_19 = activity_at_age_19_full_time_higher_education,
+    level6_at_22 = highest_level_qualification_achieved_by_age_22_level_6_or_above
+  )
 ```
 
 # Dataset introduction
 
 ## Variables Description
 
-see @tbl-tables, The variables listed here represent a selected subset of those most relevant to our analysis. The dataset is suitable for **examining how structural income deprivation may affect academic progression among young people**. The original data has been archived in the project repository and here is [the location of the data.](data/english_education.csv)
+From @tbl-tables, the variables listed here represent a selected subset of those most relevant to our analysis. The dataset is suitable for **examining how structural income deprivation may affect academic progression among young people**. The original data has been archived in the project repository and here is [the location of the data.](data/english_education.csv)
 
 ```{r}
 #| label: tbl-tables
@@ -127,9 +126,9 @@ see @tbl-tables, The variables listed here represent a selected subset of those 
 edu_variable_desc <- data.frame(
   Variable = c(
     "income_flag",
-    "level_3_at_age_18",
-    "activity_at_age_19_full_time_higher_education",
-    "highest_level_qualification_achieved_by_age_22_level_6_or_above",
+    "level3_at_18",
+    "uni_at_19",
+    "level6_at_22",
     "size_flag"
   ),
   Description = c(
@@ -144,7 +143,6 @@ edu_variable_desc <- data.frame(
 knitr::kable(
   edu_variable_desc,
   col.names = c("Variable Names", "Variable Description"),
-  align = c("l", "r"),
   booktabs = TRUE
 )
 ```
@@ -153,7 +151,7 @@ knitr::kable(
 
 The dataset contains a total of `r nrow(edu_df)` observations and `r ncol(edu_df)`variables.
 
-![Inline R code](images/inline_code.png){#fig-inlinecode}
+![Inline R code](../images/inline_code.png){#fig-inlinecode}
 
 See @fig-inlinecode for the detail of the *Inline R code* used.
 
@@ -162,7 +160,7 @@ See @fig-inlinecode for the detail of the *Inline R code* used.
 #| tbl-cap: "First 2 rows of the data"
 #| df-print: kable
 
-head(edu_df, 2)
+head(edu_df_selected, 2)
 ```
 
 See @tbl-tableone for the detail of the first 2 rows of the data and the types of variables in the dataset.
@@ -171,13 +169,12 @@ See @tbl-tableone for the detail of the first 2 rows of the data and the types o
 
 ```{r data checkout}
 #| label: tbl-proportion_of_income
-#| tbl-cap: "Proportion of Each Income Flag Category (Cities Excluded)"
+#| tbl-cap: "Proportion of Each Income Flag Category"
 
 edu_df_selected %>%
   count(income_flag) %>%
   mutate(percentage = round(n / sum(n) * 100, 1)) %>%
   knitr::kable(
-    caption = "Proportion of Each Income Flag Category",
     col.names = c("Income Flag", "Count", "Percentage (%)"),
     digits = 1
   )
@@ -186,7 +183,7 @@ edu_df_selected %>%
 While reviewing the data (@tbl-proportion_of_income), our group discover that there is **missing data** (`NA` value) in the income categories `income_flag`. In order **not to affect the accuracy of the subsequent analysis**, this missing data will not be included in the analysis. Also, since the sample in `Cities` of `income_flag` is **too small and less representative**, it is removed in the subsequent analysis.
 
 ```{r data cleaning}
-edu_df_clean <- edu_df %>%
+edu_df_clean <- edu_df_selected %>%
   filter(!is.na(income_flag) & income_flag != "Cities") %>%
   mutate(income_flag = factor(income_flag,
                               levels = c("Higher deprivation towns",
@@ -201,12 +198,12 @@ edu_df_clean <- edu_df %>%
 table1 <- edu_df_clean %>%
   group_by(income_flag) %>%
   summarise(
-    mean_level3 = mean(level_3_at_age_18, na.rm = TRUE),
-    sd_level3 = sd(level_3_at_age_18, na.rm = TRUE),
-    mean_uni19 = mean(activity_at_age_19_full_time_higher_education, na.rm = TRUE),
-    sd_uni19 = sd(activity_at_age_19_full_time_higher_education, na.rm = TRUE),
-    mean_level6 = mean(highest_level_qualification_achieved_by_age_22_level_6_or_above, na.rm = TRUE),
-    sd_level6 = sd(highest_level_qualification_achieved_by_age_22_level_6_or_above, na.rm = TRUE)
+    mean_level3 = mean(level3_at_18, na.rm = TRUE),
+    sd_level3 = sd(level3_at_18, na.rm = TRUE),
+    mean_uni19 = mean(uni_at_19, na.rm = TRUE),
+    sd_uni19 = sd(uni_at_19, na.rm = TRUE),
+    mean_level6 = mean(level6_at_22, na.rm = TRUE),
+    sd_level6 = sd(level6_at_22, na.rm = TRUE)
   ) %>%
   rename(
     "Income Group" = income_flag,
@@ -217,7 +214,6 @@ table1 <- edu_df_clean %>%
     "Mean: Level 6 at 22" = mean_level6,
     "SD: Level 6 at 22" = sd_level6
   )
-
 
 kable(table1, digits = 2) %>%
   kable_styling(full_width = FALSE)
@@ -236,9 +232,9 @@ For instance, the mean proportion of individuals achieving Level 3 qualification
 
 edu_long <- edu_df_clean %>%
   pivot_longer(
-    cols = c(level_3_at_age_18,
-             activity_at_age_19_full_time_higher_education,
-             highest_level_qualification_achieved_by_age_22_level_6_or_above),
+    cols = c(level3_at_18,
+             uni_at_19,
+             level6_at_22),
     names_to = "education_stage",
     values_to = "value"
   )
@@ -250,16 +246,16 @@ edu_long$income_flag <- recode(edu_long$income_flag,
 )
 
 edu_long$education_stage <- recode(edu_long$education_stage,
-  "level_3_at_age_18" = "Level 3 at 18",
-  "activity_at_age_19_full_time_higher_education" = "HE at 19",
-  "highest_level_qualification_achieved_by_age_22_level_6_or_above" = "Level 6 at 22"
+  "level3_at_18" = "Level 3 at 18",
+  "uni_at_19" = "HE at 19",
+  "level6_at_22" = "Level 6 at 22"
 )
 
 ggplot(edu_long, aes(x = income_flag, y = value, fill = income_flag)) +
   geom_boxplot() +
   facet_wrap(~education_stage, scales = "free_y") +
   labs(x = "Income Group", y = "Proportion") +
-  theme_minimal()+
+  theme_minimal() +
   theme(axis.text.x = element_text(size = 9, lineheight = 1.1))
 ```
 
@@ -280,9 +276,9 @@ In contrast, **higher deprivation** towns exhibit not only **lower median outcom
 summary_df <- edu_df_clean %>%
   group_by(income_flag, size_flag) %>%
   summarise(
-    level3 = mean(level_3_at_age_18, na.rm = TRUE),
-    uni19 = mean(activity_at_age_19_full_time_higher_education, na.rm = TRUE),
-    level6 = mean(highest_level_qualification_achieved_by_age_22_level_6_or_above, na.rm = TRUE)
+    level3 = mean(level3_at_18, na.rm = TRUE),
+    uni19 = mean(uni_at_19, na.rm = TRUE),
+    level6 = mean(level6_at_22, na.rm = TRUE)
   ) %>%
   pivot_longer(
     cols = c(level3, uni19, level6),
@@ -377,4 +373,6 @@ In addition, **future research** should expand the study's dataset. There is a n
 
 **Data Used**
 
-1.  Office for National Statistics. (2023, July 25). *Why do children and young people in smaller towns do better academically than those in larger towns?* <https://www.ons.gov.uk/peoplepopulationandcommunity/educationandchildcare/articles/whydochildrenandyoungpeopleinsmallertownsdobetteracademicallythanthoseinlargertowns/2023-07-25>
+1.  Office for National Statistics. (2023, July 25). *Why do children and young people in smaller towns do better academically than those in larger towns?*
+
+    <https://www.ons.gov.uk/peoplepopulationandcommunity/educationandchildcare/articles/whydochildrenandyoungpeopleinsmallertownsdobetteracademicallythanthoseinlargertowns/2023-07-25>
