@@ -72,7 +72,7 @@ This report investigates **how town-level income deprivation affects educational
 
 # Introduction
 
-**Regional inequality in education** remains a pressing issue in England, particularly among young people transitioning from secondary to higher education. This study examines **whether income deprivation at the town level impacts academic outcomes for individuals aged 18 to 22**. We focus on three key milestones: Level 3 qualifications at age 18, full-time university participation at age 19, and Level 6 or higher qualification by age 22. These stages reflect national benchmarks for educational progression.
+**Regional inequality in education** remains a pressing issue in England, particularly among young people transitioning from secondary to higher education (The Times, 2024). This study examines **whether income deprivation at the town level impacts academic outcomes for individuals aged 18 to 22**. We focus on three key milestones: Level 3 qualifications at age 18, full-time university participation at age 19, and Level 6 or higher qualification by age 22. These stages reflect national benchmarks for educational progression.
 
 To maintain analytical consistency, cities are excluded due to their distinctive socio-demographic structures, such as dense populations and diverse education systems. We also remove entries with missing or unclear income classifications to ensure accurate results. The dataset is grouped by income level and town size, and analyzed using both summary statistics and visualizations. Trends are observed across large, medium, and small towns.
 
@@ -376,3 +376,5 @@ In addition, **future research** should expand the study's dataset. There is a n
 1.  Office for National Statistics. (2023, July 25). *Why do children and young people in smaller towns do better academically than those in larger towns?*
 
     <https://www.ons.gov.uk/peoplepopulationandcommunity/educationandchildcare/articles/whydochildrenandyoungpeopleinsmallertownsdobetteracademicallythanthoseinlargertowns/2023-07-25>
+
+2.  The Times. (2024, August 14). University offers at record high as inequality in degree entry grows. Retrieved from <https://www.thetimes.co.uk/article/university-offers-at-record-high-as-inequality-in-access-grows-ttj9scz6b>
