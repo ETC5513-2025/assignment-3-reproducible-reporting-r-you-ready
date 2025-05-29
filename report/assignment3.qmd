@@ -13,15 +13,21 @@ format:
     crossrefs-hover: true
     anchor-sections: true
     highlight-style: github
-    css: ../tex/styles.css
+    css: ../resources/styles.css
   pdf:
-    template: ../tex/elegantpaper-pandoc.tex
     pdf-engine: xelatex
+    template: ../resources/elegantpaper-pandoc.tex
+    citeproc: true
     toc: true
     number-sections: true
     fontsize: 11pt
     linestretch: 1.3
     mainfont: "TeX Gyre Pagella"
+    keep-tex: true
+    
+bibliography: ../resources/references.bib
+csl: ../resources/apa.csl
+link-citations: true
 
 execute: 
   code-overlay:
@@ -72,7 +78,7 @@ This report investigates **how town-level income deprivation affects educational
 
 # Introduction
 
-**Regional inequality in education** remains a pressing issue in England, particularly among young people transitioning from secondary to higher education (The Times, 2024). This study examines **whether income deprivation at the town level impacts academic outcomes for individuals aged 18 to 22**. We focus on three key milestones: Level 3 qualifications at age 18, full-time university participation at age 19, and Level 6 or higher qualification by age 22. These stages reflect national benchmarks for educational progression.
+**Regional inequality in education** remains a pressing issue in England, particularly among young people transitioning from secondary to higher education [@TheTimes2024UniversityOffers]. This study examines **whether income deprivation at the town level impacts academic outcomes for individuals aged 18 to 22**. We focus on three key milestones: Level 3 qualifications at age 18, full-time university participation at age 19, and Level 6 or higher qualification by age 22. These stages reflect national benchmarks for educational progression.
 
 To maintain analytical consistency, cities are excluded due to their distinctive socio-demographic structures, such as dense populations and diverse education systems. We also remove entries with missing or unclear income classifications to ensure accurate results. The dataset is grouped by income level and town size, and analyzed using both summary statistics and visualizations. Trends are observed across large, medium, and small towns.
 
@@ -88,7 +94,7 @@ Does the income level of a town affect the educational outcomes of young people?
 
 In this study, our group chose to **download the dataset locally** rather than relying on an online dataset. This approach **improves the reproducibility of the analysis** because local data ensures continuous access to a stable version of the data and avoids remote sources updating or deleting the data resulting in different analysis results. Also, **local datasets are more stable** as they do not rely on a network connection, which avoids interruptions due to application program interface limitations or network problems. It also improves processing speed and supports offline analysis, which is essential for **a reliable and efficient research workflow**.
 
-We use the english_education.csv dataset downloading from the [TidyTuesday](https://github.com/rfordatascience/tidytuesday/blob/main/data/2024/2024-01-23/english_education.csv), originally sourced from [The UK Office for National Statistics (ONS)](https://www.ons.gov.uk/). The dataset contains education and deprivation data for over 1,000 English towns, offering town-level observations across key variables such as `income_flag`, `size_flag`, `level_3_at_age_18`, `activity_at_age_19_full_time_higher_education`, and `highest_level_qualification_achieved_by_age_22_level_6_or_above2`. These indicators provide a robust basis for analyzing **educational progression** in relation to **local income deprivation**.
+We use the english_education.csv dataset downloading from the [TidyTuesday](https://github.com/rfordatascience/tidytuesday/blob/main/data/2024/2024-01-23/english_education.csv), originally sourced from the UK Office for National Statistics (ONS) @ONS2023AcademicTowns. The dataset contains education and deprivation data for over 1,000 English towns, offering town-level observations across key variables such as income_flag, size_flag, level_3_at_age_18, activity_at_age_19_full_time_higher_education, and highest_level_qualification_achieved_by_age_22_level_6_or_above2. These indicators provide a robust basis for analyzing **educational progression** in relation to **local income deprivation**.
 
 ```{r data loading}
 edu_df <- read_csv("../data/english_education.csv")
@@ -349,32 +355,20 @@ To address the disparities observed, education policy should **prioritize suppor
 
 In addition, **future research** should expand the study's dataset. There is a need to include **multiple clusters and urban areas** and to **integrate qualitative indicators** such as school quality and student support services as study variables. These efforts will contribute to **a more comprehensive understanding of how income poverty affects educational trajectories** and inform the development of more equitable education strategies.
 
-# Citation
+## R and R package Used
 
-**R and R Package**
+Data analysis and report generation for this project uses R and a variety of supporting software packages, including data processing, visualization, and repeatable research tools.
 
-1.  R Core Team (2025). *R: A Language and Environment for Statistical Computing*. R Foundation for Statistical Computing, Vienna, Austria. <https://www.R-project.org/>.
+The following software and packages were used:
 
-2.  Wickham H, François R, Henry L, Müller K, Vaughan D (2023). *dplyr: A Grammar of Data Manipulation*. R package version 1.1.4, <https://CRAN.R-project.org/package=dplyr>.
+- R [@RCore2025]
+- **dplyr** [@dplyr2023]
+- **ggplot2** [@ggplot22016]
+- **readr** [@readr2024]
+- **tidyr** [@tidyr2024]
+- **knitr** [@knitr2024; @knitrBook2015; @knitrChapter2014]
+- **kableExtra** [@kableExtra2024]
 
-3.  H. Wickham. ggplot2: Elegant Graphics for Data Analysis. Springer-Verlag New York, 2016.
-
-4.  Wickham H, Hester J, Bryan J (2024). *readr: Read Rectangular Text Data*. R package version 2.1.5, <https://CRAN.R-project.org/package=readr>.
-
-5.  Wickham H, Vaughan D, Girlich M (2024). *tidyr: Tidy Messy Data*. R package version 1.3.1, <https://CRAN.R-project.org/package=tidyr>.
-
-6.  Xie Y (2024). *knitr: A General-Purpose Package for Dynamic Report Generation in R*. R package version 1.49, <https://yihui.org/knitr/>.
-
-    Yihui Xie (2015) Dynamic Documents with R and knitr. 2nd edition. Chapman and Hall/CRC. ISBN 978-1498716963
-
-    Yihui Xie (2014) knitr: A Comprehensive Tool for Reproducible Research in R. In Victoria Stodden, Friedrich Leisch and Roger D. Peng, editors, Implementing Reproducible Computational Research. Chapman and Hall/CRC. ISBN 978-1466561595
-
-7.  Zhu H (2024). *kableExtra: Construct Complex Table with 'kable' and Pipe Syntax*. R package version 1.4.0, https://github.com/haozhu233/kableExtra, <http://haozhu233.github.io/kableExtra/>.
-
-**Data Used**
-
-1.  Office for National Statistics. (2023, July 25). *Why do children and young people in smaller towns do better academically than those in larger towns?*
-
-    <https://www.ons.gov.uk/peoplepopulationandcommunity/educationandchildcare/articles/whydochildrenandyoungpeopleinsmallertownsdobetteracademicallythanthoseinlargertowns/2023-07-25>
-
-2.  The Times. (2024, August 14). University offers at record high as inequality in degree entry grows. Retrieved from <https://www.thetimes.co.uk/article/university-offers-at-record-high-as-inequality-in-access-grows-ttj9scz6b>
+# References
+::: {#refs}
+:::
