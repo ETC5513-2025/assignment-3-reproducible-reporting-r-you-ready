@@ -118,7 +118,7 @@ edu_df_selected <- edu_df %>%
 
 From @tbl-tables, the variables listed here represent a selected subset of those most relevant to our analysis. The dataset is suitable for **examining how structural income deprivation may affect academic progression among young people**. The original data has been archived in the project repository and here is [the location of the data.](data/english_education.csv)
 
-```{r}
+```{r variable description}
 #| label: tbl-tables
 #| tbl-cap: 
 #| - "This table contains the key variables used in the analysis along with their descriptions"
@@ -155,7 +155,7 @@ The dataset contains a total of `r nrow(edu_df)` observations and `r ncol(edu_df
 
 See @fig-inlinecode for the detail of the *Inline R code* used.
 
-```{r}
+```{r dataset description}
 #| label: tbl-tableone
 #| tbl-cap: "First 2 rows of the data"
 #| df-print: kable
@@ -191,7 +191,7 @@ edu_df_clean <- edu_df_selected %>%
                                          "Lower deprivation towns")))
 ```
 
-```{r}
+```{r tabel of mean and SD}
 #| label: tbl-edu_means_by_income
 #| tbl-cap: "Mean and SD of Educational Outcomes by Income Group(Cities Excluded)"
 
@@ -226,7 +226,7 @@ For instance, the mean proportion of individuals achieving Level 3 qualification
 
 **The standard deviations are relatively consistent across groups**. This suggests that while variation exists, the overall improvement in outcomes is not due to a small number of high performers.
 
-```{r}
+```{r educational outcomes boxplot}
 #| label: fig-edu_outcomes_boxplot
 #| fig-cap: "Educational Outcomes by Income Group(Cities Excluded)"
 
@@ -267,7 +267,7 @@ In contrast, **higher deprivation** towns exhibit not only **lower median outcom
 
 # Result
 
-```{r}
+```{r educational attainment barplot}
 #| label: fig-income-education-by-size
 #| fig-cap: "Educational Attainment by Income Deprivation Level and Town Size (Cities Excluded)"
 #| fig-subcap:
