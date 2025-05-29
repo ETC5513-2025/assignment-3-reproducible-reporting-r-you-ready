@@ -15,70 +15,260 @@ execute:
   echo: false
   warning: false
   message: false
-
 ---
+## Background Test
+<!-- .slide: data-background-color="#880000" -->
 
-# Does Income Deprivation Affect Educational Attainment?
+If this slide has a dark red background, `.slide:` is working.
 
-### Vicky Feng & Ruyu Li & Dev Karan Gur
+------------------------------------------------------------------------
 
----
+## Does Income Deprivation Affect Educational Attainment?
+<!-- .slide: data-background-image="../images/open_page.JPG" data-background-size="cover" -->
+
+Vicky Feng · Ruyu Li · Dev Karan Gur
+
+```{r package loading, include=FALSE}
+library(dplyr)
+library(ggplot2)
+library(readr)
+library(tidyr)
+library(knitr)
+library(kableExtra)
+```
+
+------------------------------------------------------------------------
 
 ## Introduction
-- Regional inequality in education is a persistent concern in England.
-- This study examines whether town-level income deprivation influences academic attainment for youth aged 18 to 22.
-- We focus on three key outcome stages:
-  - Level 3 qualification at age 18
-  - University entry at age 19
-  - Level 6+ qualification by age 22
-- Goal: Assess how income inequality impacts educational outcomes and whether effects differ by town size.
+<!-- .slide: data-background-image="../images/main_page.JPG" data-background-size="cover" -->
 
----
+-   Regional inequality in education is a persistent concern in England.
+
+-   This study examines whether town-level income deprivation influences academic attainment for youth aged 18 to 22.
+
+-   We focus on three key outcome stages:
+
+    -   Level 3 qualification at age 18
+    -   University entry at age 19
+    -   Level 6+ qualification by age 22
+
+-   Goal: Assess how income inequality impacts educational outcomes and whether effects differ by town size.
+
+------------------------------------------------------------------------
 
 ## Research Question
 
-**Does the income level of a town affect the educational outcomes of young people?**
----
+### **Does the income level of a town affect the educational outcomes of young people?**
+<!-- .slide: data-background-image="../images/main_page.JPG" data-background-size="cover" -->
+
+------------------------------------------------------------------------
 
 ## Variables and Dataset Description
+<!-- .slide: data-background-image="../images/main_page.JPG" data-background-size="cover" -->
 
-- Based on `english_education.csv` from the TidyTuesday project.
-- Contains 1104 town-level observations and 31 variables.
-- Key variables used:
-  - `income_flag`: income deprivation group (higher/mid/lower)
-  - `level3_at_18`, `uni_at_19`, `level6_at_22`: educational outcomes
-  - `size_flag`: town size classification (small/medium/large)
-- Enables exploration of how deprivation and town size relate to long-term educational attainment.
----
+```{r data loading}
+edu_df <- read_csv("../data/english_education.csv")
+```
+
+```{r related variables chosen}
+selected_vars <- c( 
+  "income_flag",
+  "level_3_at_age_18",
+  "activity_at_age_19_full_time_higher_education",
+  "highest_level_qualification_achieved_by_age_22_level_6_or_above",
+  "size_flag"
+)
+
+edu_df_selected <- edu_df %>%
+  select(all_of(selected_vars))%>%
+  rename(
+    level3_at_18 = level_3_at_age_18,
+    uni_at_19 = activity_at_age_19_full_time_higher_education,
+    level6_at_22 = highest_level_qualification_achieved_by_age_22_level_6_or_above
+  )
+```
+
+-   Based on `english_education.csv` from the TidyTuesday project and UK Office for National Statistics (ONS).
+-   Contains 1104 town-level observations and 31 variables.
+-   Key related variables used in this analysis :
+
+```{r}
+#| label: tbl-variable-description
+#| tbl-cap: "Key Variables in the Analysis"
+
+edu_variable_desc <- data.frame(
+  Variable = c("income_flag", "level3_at_18", "uni_at_19", "level6_at_22", "size_flag"),
+  Description = c(
+    "Income deprivation group (higher / mid / lower)",
+    "% achieving Level 3 qualification at age 18",
+    "% entering full-time university at age 19",
+    "% attaining Level 6+ qualification by age 22",
+    "Town size classification (small / medium / large)"
+  )
+)
+
+kable(edu_variable_desc, format = "markdown", align = "l")
+```
+
+-   Enables exploration of how deprivation and town size relate to long-term educational attainment.
+
+------------------------------------------------------------------------
 
 ## methodology
 
+### Table of Mean and SD of Educational Outcomes by Income Group
+<!-- .slide: data-background-image="../images/main_page.JPG" data-background-size="cover" -->
 
+```{r data cleaning}
+edu_df_clean <- edu_df_selected %>%
+  filter(!is.na(income_flag) & income_flag != "Cities") %>%
+  mutate(income_flag = factor(income_flag,
+                              levels = c("Higher deprivation towns",
+                                         "Mid deprivation towns",
+                                         "Lower deprivation towns")))
+```
 
+```{r tabel of mean and SD}
+#| label: tbl-edu_means_by_income
+#| tbl-cap: "Mean and SD of Educational Outcomes by Income Group(Cities Excluded)"
 
----
+table1 <- edu_df_clean %>%
+  group_by(income_flag) %>%
+  summarise(
+    mean_level3 = mean(level3_at_18, na.rm = TRUE),
+    sd_level3 = sd(level3_at_18, na.rm = TRUE),
+    mean_uni19 = mean(uni_at_19, na.rm = TRUE),
+    sd_uni19 = sd(uni_at_19, na.rm = TRUE),
+    mean_level6 = mean(level6_at_22, na.rm = TRUE),
+    sd_level6 = sd(level6_at_22, na.rm = TRUE)
+  ) %>%
+  rename(
+    "Income Group" = income_flag,
+    "Mean: Level 3 at 18" = mean_level3,
+    "SD: Level 3 at 18" = sd_level3,
+    "Mean: HE at 19" = mean_uni19,
+    "SD: HE at 19" = sd_uni19,
+    "Mean: Level 6 at 22" = mean_level6,
+    "SD: Level 6 at 22" = sd_level6
+  )
 
-## results
+kable(table1, digits = 2) %>%
+  kable_styling(full_width = FALSE)
 
-- Educational attainment rises as income deprivation decreases.
-- Lower deprivation towns outperform others at ages 18, 19, and 22.
-- The gap is most pronounced in small towns, especially at Level 6+.
-- Highlights the role of local economic conditions.
+```
 
----
+### Educational Outcomes by Income Group
+<!-- .slide: data-background-image="../images/main_page.JPG" data-background-size="cover" -->
+
+```{r educational outcomes boxplot}
+#| label: fig-edu_outcomes_boxplot
+#| fig-cap: "Educational Outcomes by Income Group(Cities Excluded)"
+
+edu_long <- edu_df_clean %>%
+  pivot_longer(
+    cols = c(level3_at_18,
+             uni_at_19,
+             level6_at_22),
+    names_to = "education_stage",
+    values_to = "value"
+  )
+
+edu_long$income_flag <- recode(edu_long$income_flag,
+  "Higher deprivation towns" = "Higher\ndeprivation\ntowns",
+  "Mid deprivation towns" = "Mid\ndeprivation\ntowns",
+  "Lower deprivation towns" = "Lower\ndeprivation\ntowns"
+)
+
+edu_long$education_stage <- recode(edu_long$education_stage,
+  "level3_at_18" = "Level 3 at 18",
+  "uni_at_19" = "HE at 19",
+  "level6_at_22" = "Level 6 at 22"
+)
+
+ggplot(edu_long, aes(x = income_flag, y = value, fill = income_flag)) +
+  geom_boxplot() +
+  facet_wrap(~education_stage, scales = "free_y") +
+  labs(x = "Income Group", y = "Proportion") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(size = 9, lineheight = 1.1))
+```
+
+------------------------------------------------------------------------
+
+## Results
+<!-- .slide: data-background-image="../images/main_page.JPG" data-background-size="cover" -->
+
+```{r educational attainment barplot}
+#| label: fig-income-education-by-size
+#| fig-cap: "Educational Attainment by Income Deprivation Level and Town Size (Cities Excluded)"
+#| fig-subcap:
+#| - "Comparison of educational outcomes across income levels and town sizes"
+
+summary_df <- edu_df_clean %>%
+  group_by(income_flag, size_flag) %>%
+  summarise(
+    level3 = mean(level3_at_18, na.rm = TRUE),
+    uni19 = mean(uni_at_19, na.rm = TRUE),
+    level6 = mean(level6_at_22, na.rm = TRUE)
+  ) %>%
+  pivot_longer(
+    cols = c(level3, uni19, level6),
+    names_to = "education_stage",
+    values_to = "mean_value"
+  )
+
+summary_df$education_stage <- recode(summary_df$education_stage,
+  "level3" = "Level 3 at Age 18",
+  "uni19" = "University at 19",
+  "level6" = "Level 6+ by Age 22"
+)
+
+summary_df$income_flag <- recode(summary_df$income_flag,
+  "Higher deprivation towns" = "Higher\ndeprivation\ntowns",
+  "Mid deprivation towns" = "Mid\ndeprivation\ntowns",
+  "Lower deprivation towns" = "Lower\ndeprivation\ntowns"
+)
+
+ggplot(summary_df, aes(x = income_flag, y = mean_value, fill = education_stage)) +
+  geom_col(position = "dodge", width = 0.7) +
+  facet_wrap(~size_flag) +
+  labs(
+    x = "Income Deprivation Group",
+    y = "Average Proportion",
+    fill = "Education Stage"
+  ) +
+  scale_fill_manual(
+    values = c(
+      "Level 3 at Age 18" = "#4C72B0",
+      "University at 19" = "#55A868",
+      "Level 6+ by Age 22" = "#C44E52"
+    )
+  ) +
+  theme_minimal() +
+  theme(axis.text.x = element_text(size = 9, lineheight = 1.1))
+```
+
+-   Educational attainment rises as income deprivation decreases.
+-   Lower deprivation towns outperform others at ages 18, 19, and 22.
+-   The gap is most pronounced in small towns, especially at Level 6+.
+-   Highlights the role of local economic conditions.
+
+------------------------------------------------------------------------
 
 ## Conclusions and Recommendations
+<!-- .slide: data-background-image="../images/main_page.JPG" data-background-size="cover" -->
 
-- Strong link: less deprived towns show better educational outcomes.
-- Support should target high-deprivation towns — especially small ones.
-- Recommend expanding dataset and integrating qualitative factors.
+-   Strong link: less deprived towns show better educational outcomes.
+-   Support should target high-deprivation towns — especially small ones.
+-   Recommend expanding dataset and integrating qualitative factors.
 
----
+------------------------------------------------------------------------
 
-## Thank You 🙏
+## Thank You
+<!-- .slide: data-background-image="../images/open_page.JPG" data-background-size="cover" -->
 
-**Group R you OK?**  
-- Presentation done!  
+**Group R you OK?**
+- Presentation done!
 - Questions welcome.
 
----
+------------------------------------------------------------------------
