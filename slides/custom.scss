@@ -4,18 +4,11 @@
 .reveal {
   font-family: "Helvetica Neue", sans-serif;
   color: #2c3e50;
-  font-size: 1.05rem;
-  line-height: 1.8;
+  font-size: 1.5rem;
+  line-height: 2;
   background-color: transparent;
 }
 
-/* === Global background image === */
-section.present {
-  background-image: url("main_page.jpg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
 
 /* === Typography === */
 .reveal h1 {
@@ -55,7 +48,7 @@ section.present {
 
 /* === Table style === */
 .reveal table {
-  width: 100%;
+  width: 80%;
   border-collapse: collapse;
   margin-top: 1em;
   margin-bottom: 1em;

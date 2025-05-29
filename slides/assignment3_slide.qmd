@@ -1,7 +1,7 @@
 ---
 title: "From Deprivation to Degree"
 subtitle: "How Income Affects Youth Education in English Towns"
-author: "Group R you OK?"
+author: "Group R you OK? ：Vicky Feng · Ruyu Li · Dev Karan Gur"
 format:
   revealjs:
     theme: [default, custom.scss]
@@ -10,16 +10,15 @@ format:
     incremental: true
     transition: slide
     center: true
-    embed-resources: false
+    embed-resources: true
 execute:
   echo: false
   warning: false
   message: false
+editor: 
+  markdown: 
+    wrap: sentence
 ---
-
-## Does Income Deprivation Affect Educational Attainment?
-
-Vicky Feng · Ruyu Li · Dev Karan Gur
 
 ```{r package loading, include=FALSE}
 library(dplyr)
@@ -30,29 +29,21 @@ library(knitr)
 library(kableExtra)
 ```
 
-------------------------------------------------------------------------
-
 ## Introduction
 
--   Regional inequality in education is a persistent concern in England.
+**Regional inequality in education** is a persistent concern in England.
 
--   This study examines whether town-level income deprivation influences academic attainment for youth aged 18 to 22.
+This study examines **whether town-level income deprivation influences academic attainment for youth aged 18 to 22**.
 
--   We focus on three key outcome stages:
+We focus on three key outcome stages:
 
-    -   Level 3 qualification at age 18
-    -   University entry at age 19
-    -   Level 6+ qualification by age 22
-
--   Goal: Assess how income inequality impacts educational outcomes and whether effects differ by town size.
-
-------------------------------------------------------------------------
+-   **Level 3 qualification at age 18**
+-   **University entry at age 19**
+-   **Level 6+ qualification by age 22**
 
 ## Research Question
 
-### **Does the income level of a town affect the educational outcomes of young people?**
-
-------------------------------------------------------------------------
+**Does the income level of a town affect the educational outcomes of young people?**
 
 ## Variables and Dataset Description
 
@@ -78,9 +69,11 @@ edu_df_selected <- edu_df %>%
   )
 ```
 
--   Based on `english_education.csv` from the TidyTuesday project and UK Office for National Statistics (ONS).
--   Contains 1104 town-level observations and 31 variables.
--   Key related variables used in this analysis :
+Based on `english_education.csv` from the TidyTuesday project and **UK Office for National Statistics (ONS)**.
+
+Contains **1104 town-level observations** and **31 variables**.
+
+**Key related variables** used in this analysis :
 
 ```{r}
 #| label: tbl-variable-description
@@ -100,13 +93,7 @@ edu_variable_desc <- data.frame(
 kable(edu_variable_desc, format = "markdown", align = "l")
 ```
 
--   Enables exploration of how deprivation and town size relate to long-term educational attainment.
-
-------------------------------------------------------------------------
-
-## methodology
-
-### Table of Mean and SD of Educational Outcomes by Income Group
+## Table of Mean and SD of Educational Outcomes by Income Group
 
 ```{r data cleaning}
 edu_df_clean <- edu_df_selected %>%
@@ -146,7 +133,11 @@ kable(table1, digits = 2) %>%
 
 ```
 
-### Educational Outcomes by Income Group
+**Mean values improve** as deprivation decreases
+
+**Standard deviations** are **smaller** in lower deprivation towns → more consistent outcomes
+
+## Educational Outcomes by Income Group (Boxplot)
 
 ```{r educational outcomes boxplot}
 #| label: fig-edu_outcomes_boxplot
@@ -181,7 +172,11 @@ ggplot(edu_long, aes(x = income_flag, y = value, fill = income_flag)) +
   theme(axis.text.x = element_text(size = 9, lineheight = 1.1))
 ```
 
-------------------------------------------------------------------------
+**Lower** deprivation towns have: **Higher medians** and **Narrower interquartile ranges**
+
+**Higher** deprivation towns show: **Greater variability** and **Lower educational outcomes**
+
+**Clear trend**: Income linked to educational success
 
 ## Results
 
@@ -235,25 +230,26 @@ ggplot(summary_df, aes(x = income_flag, y = mean_value, fill = education_stage))
   theme(axis.text.x = element_text(size = 9, lineheight = 1.1))
 ```
 
--   Educational attainment rises as income deprivation decreases.
--   Lower deprivation towns outperform others at ages 18, 19, and 22.
--   The gap is most pronounced in small towns, especially at Level 6+.
--   Highlights the role of local economic conditions.
+Educational attainment **rises** as income deprivation decreases.
 
-------------------------------------------------------------------------
+**Lower deprivation towns outperform** others at ages 18, 19, and 22.
+
+The gap is most pronounced in **small towns**, especially at Level 6+.
+
+Highlights the role of local economic conditions.
 
 ## Conclusions and Recommendations
 
--   Strong link: less deprived towns show better educational outcomes.
--   Support should target high-deprivation towns — especially small ones.
--   Recommend expanding dataset and integrating qualitative factors.
+Strong link: less deprived towns show better educational outcomes.
 
-------------------------------------------------------------------------
+Support should target high-deprivation towns — especially small ones.
 
-## Thank You
+Recommend expanding dataset and integrating qualitative factors.
 
-**Group R you OK?**
-- Presentation done!
-- Questions welcome.
+## Ending Page
 
-------------------------------------------------------------------------
+**Thank you!**
+
+Presentation done!
+
+Questions welcome.
