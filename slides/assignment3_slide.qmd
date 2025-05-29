@@ -17,62 +17,61 @@ execute:
   message: false
 
 ---
-## 
 
+# Does Income Deprivation Affect Educational Attainment?
 
-
+### Vicky Feng & Ruyu Li & Dev Karan Gur
 
 ---
 
 ## Introduction
-
+- Regional inequality in education is a persistent concern in England.
+- This study examines whether town-level income deprivation influences academic attainment for youth aged 18 to 22.
+- We focus on three key outcome stages:
+  - Level 3 qualification at age 18
+  - University entry at age 19
+  - Level 6+ qualification by age 22
+- Goal: Assess how income inequality impacts educational outcomes and whether effects differ by town size.
 
 ---
 
 ## Research Question
 
 **Does the income level of a town affect the educational outcomes of young people?**
-
-
----
-
-## Data Overview
-
-
-
 ---
 
 ## Variables and Dataset Description
 
-
-
+- Based on `english_education.csv` from the TidyTuesday project.
+- Contains 1104 town-level observations and 31 variables.
+- Key variables used:
+  - `income_flag`: income deprivation group (higher/mid/lower)
+  - `level3_at_18`, `uni_at_19`, `level6_at_22`: educational outcomes
+  - `size_flag`: town size classification (small/medium/large)
+- Enables exploration of how deprivation and town size relate to long-term educational attainment.
 ---
 
-## 
+## methodology
 
-
----
-
-## 
-
-
----
-
-## Key Findings
 
 
 
 ---
 
-## Policy Implications
+## results
 
-
+- Educational attainment rises as income deprivation decreases.
+- Lower deprivation towns outperform others at ages 18, 19, and 22.
+- The gap is most pronounced in small towns, especially at Level 6+.
+- Highlights the role of local economic conditions.
 
 ---
 
-## Conclusion
+## Conclusions and Recommendations
 
-
+- Strong link: less deprived towns show better educational outcomes.
+- Support should target high-deprivation towns — especially small ones.
+- Recommend expanding dataset and integrating qualitative factors.
 
 ---
 
@@ -81,3 +80,5 @@ execute:
 **Group R you OK?**  
 - Presentation done!  
 - Questions welcome.
+
+---
