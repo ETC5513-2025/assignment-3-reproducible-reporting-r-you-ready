@@ -13,9 +13,9 @@ format:
     crossrefs-hover: true
     anchor-sections: true
     highlight-style: github
-    css: ../tex/styles.css
+    css: ../resources/styles.css
   pdf:
-    template: ../tex/elegantpaper-pandoc.tex
+    template: ../resources/elegantpaper-pandoc.tex
     pdf-engine: xelatex
     toc: true
     number-sections: true
