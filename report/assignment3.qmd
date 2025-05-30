@@ -317,7 +317,7 @@ ggplot(summary_df, aes(x = income_flag, y = mean_value, fill = education_stage))
   theme(axis.text.x = element_text(size = 9, lineheight = 1.1))
 ```
 
-As shown in Figure @fig-income-education-by-size, **educational attainment increases consistently as income deprivation decreases, across all town sizes**. Towns with **lower deprivation levels** demonstrate the **highest average proportions** of students achieving Level 3 qualifications at age 18, entering university at age 19, and obtaining Level 6 or higher qualifications by age 22.
+As shown in @fig-income-education-by-size, **educational attainment increases consistently as income deprivation decreases, across all town sizes**. Towns with **lower deprivation levels** demonstrate the **highest average proportions** of students achieving Level 3 qualifications at age 18, entering university at age 19, and obtaining Level 6 or higher qualifications by age 22.
 
 This pattern holds for large, medium, and small towns, though the gap between high and low deprivation groups appears most pronounced in small towns, particularly at the Level 6+ stage. In small towns, the difference in university attainment between high and low deprivation groups exceeds 10 percentage points.
 
