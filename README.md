@@ -2,9 +2,9 @@
 
 Group Members:
 
-*
 * Ruyu  Li
 * Vicky Feng
+* Dev Karan Gur
 
 Topic: The Relationship Between Local Income Levels and Youth Education
 
