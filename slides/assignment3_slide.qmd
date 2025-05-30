@@ -70,7 +70,7 @@ edu_df_selected <- edu_df %>%
 
 Based on `english_education.csv` from the TidyTuesday project and **UK Office for National Statistics (ONS)**.
 
-Contains **1104 town-level observations** and **31 variables**.
+Contains **1104 town-level observations** and **31 variables** from 2012 to 2013 school year.
 
 **Key related variables** used in this analysis :
 
