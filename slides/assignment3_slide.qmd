@@ -6,7 +6,6 @@ format:
   revealjs:
     theme: [default, custom.scss]
     slide-number: true
-    toc: true
     incremental: true
     transition: slide
     center: true
@@ -92,6 +91,8 @@ edu_variable_desc <- data.frame(
 
 kable(edu_variable_desc, format = "markdown", align = "l")
 ```
+
+# Methodology
 
 ## Table of Mean and SD of Educational Outcomes by Income Group
 
@@ -238,11 +239,11 @@ Highlights the role of local economic conditions.
 
 ## Conclusions and Recommendations
 
-Strong link: less deprived towns show better educational outcomes.
+Strong link: **less deprived towns show better educational outcomes**.
 
-Support should target high-deprivation towns — especially small ones.
+Support should target **high-deprivation towns** — especially small ones.
 
-Recommend expanding dataset and integrating qualitative factors.
+Recommend **expanding dataset** and integrating qualitative factors.
 
 ## Ending Page
 
