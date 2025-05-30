@@ -68,21 +68,23 @@ library(kableExtra)
 
 # Executive summary
 
-This report investigates **how town-level income deprivation affects educational attainment among English youth aged 18 to 22**. Using national data, we analyze academic outcomes at three life stages: Level 3 qualification at 18, university entry at 19, and Level 6+ attainment by 22. Results show a clear upward trend—youth from lower deprivation towns consistently outperform those from higher deprivation areas, especially by age 22. These findings highlight structural inequalities and suggest the need for targeted educational support in deprived communities.
+This report investigates **how town-level income deprivation affects educational attainment among English youth aged 18 to 22**. Using national data, we analyze academic outcomes at three life stages: Level 3 qualification at 18, university entry at 19, and Level 6+ attainment by 22. Results show a clear **upward trend**—youth from lower deprivation towns consistently outperform those from higher deprivation areas, especially by age 22.
+
+These findings highlight structural inequalities and suggest the need for targeted educational support in deprived communities.
 
 # Introduction
 
-**Regional inequality in education** remains a pressing issue in England, particularly among young people transitioning from secondary to higher education (The Times, 2024). This study examines **whether income deprivation at the town level impacts academic outcomes for individuals aged 18 to 22**. We focus on three key milestones: Level 3 qualifications at age 18, full-time university participation at age 19, and Level 6 or higher qualification by age 22. These stages reflect national benchmarks for educational progression.
+Regional disparities in educational outcomes remain a significant concern in England, particularly for young people navigating the transition from secondary to higher education (The Times, 2024). This study investigates the extent to which town-level income deprivation influences academic achievement among individuals aged 18 to 22. Our analysis focuses on three nationally recognised educational milestones: attainment of Level 3 qualifications by age 18, participation in full-time university education at age 19, and completion of Level 6 or higher qualifications by age 22.
 
-To maintain analytical consistency, cities are excluded due to their distinctive socio-demographic structures, such as dense populations and diverse education systems. We also remove entries with missing or unclear income classifications to ensure accurate results. The dataset is grouped by income level and town size, and analyzed using both summary statistics and visualizations. Trends are observed across large, medium, and small towns.
+To ensure analytical clarity, we excluded city-level data due to their distinct socio-demographic profiles—such as high population density and varied education infrastructure—which could skew comparisons. Observations with missing or ambiguous income classifications were also removed to maintain data integrity. The dataset was then grouped by income level and town size, and explored through descriptive statistics and visualisations.
 
-Findings reveal a consistent association: **as income deprivation decreases, educational attainment increases**. This analysis deepens our understanding of structural disadvantage and supports the development of more equitable, data-driven education policies.
+Our findings reveal a consistent pattern: towns with lower levels of income deprivation tend to exhibit higher rates of educational attainment across all three milestones. These results contribute to a deeper understanding of how structural inequality shapes academic pathways and highlight the need for targeted, data-informed education policies to bridge the gap.
 
 # Research Question
 
 This study will focus on:
 
-Does the income level of a town affect the educational outcomes of young people?
+**Does the income level of a town affect the educational outcomes of young people?**
 
 # Data Loading
 
@@ -325,11 +327,11 @@ These results **reinforce a strong association between local income levels and y
 
 # Discussion
 
-Our analysis shows a clear trend: **towns with lower levels of income deprivation consistently achieve better educational outcomes at age 18, 19 and 22**. This pattern applies to towns of all sizes and is **particularly evident in smaller towns**, where the gap in Level 6 qualifications is most pronounced. These results are **consistent with recent ONS research** suggesting that towns with lower levels of deprivation may provide a more conducive environment for academic success.
+Our analysis reveals a consistent trend: towns with lower levels of income deprivation demonstrate stronger educational outcomes at ages 18, 19, and 22. This association holds across all town sizes and is particularly pronounced in smaller towns, where the disparity in Level 6 qualifications is most significant. These findings align with recent research by the UK Office for National Statistics (ONS), which suggests that less deprived areas may offer more supportive conditions for academic progression.
 
-However, this study has **several limitations** that cannot be ignored. First, as an observational analysis, it **cannot establish a clear causal relationship**. Although there is a clear strong link, we cannot conclude that income poverty is a direct factor in lower educational attainment. Second, the measurement of poverty relies on broad categorical groupings, which may **obscure important local-level variations and nuances**. Third, we exclude cities from the analysis. While this is for consistency, this choice **limits the generalizability of the findings to urban populations**, since they often face unique educational challenges. Finally, the dataset represents a single cohort of students from the 2012/13 school year and may **not reflect evolving trends or long-term patterns in educational progress**. These limitations highlight the need for a more comprehensive, longitudinal and contextualize
+Nonetheless, several limitations of this study must be acknowledged. First, as an observational analysis, our findings illustrate correlation rather than causation. While the relationship between deprivation and lower attainment is strong, we cannot definitively claim that income deprivation directly causes poorer educational outcomes. Second, the use of broad categorical income groupings may mask finer-grained local differences, potentially obscuring key contextual factors. Third, we deliberately excluded cities to ensure analytical consistency; however, this decision limits the generalisability of our findings, particularly to urban populations who often face distinct educational barriers. Lastly, the dataset is limited to a single cohort of students from the 2012/13 academic year, meaning it may not capture evolving socioeconomic dynamics or long-term trends in educational performance.
 
-Despite these limitations, the findings highlight clear structural inequalities. This points to the **need for targeted policy interventions in poorer towns**. Future research should incorporate more detailed longitudinal data to better understand the underlying causes.
+Despite these constraints, the findings clearly highlight structural inequalities that disadvantage youth in more deprived towns. This underscores the need for targeted, evidence-based policy interventions to reduce educational disparities. Future research should incorporate longitudinal data and more granular socioeconomic indicators to deepen our understanding of these patterns and inform more effective policy responses.
 
 # Conclusion
 
