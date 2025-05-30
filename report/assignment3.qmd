@@ -74,11 +74,11 @@ These findings highlight structural inequalities and suggest the need for target
 
 # Introduction
 
-Regional disparities in educational outcomes remain a significant concern in England, particularly for young people navigating the transition from secondary to higher education (The Times, 2024). This study investigates the extent to which town-level income deprivation influences academic achievement among individuals aged 18 to 22. Our analysis focuses on three nationally recognised educational milestones: attainment of Level 3 qualifications by age 18, participation in full-time university education at age 19, and completion of Level 6 or higher qualifications by age 22.
+**Regional inequality in education** remains a pressing issue in England, particularly among young people transitioning from secondary to higher education (The Times, 2024). This study examines **whether income deprivation at the town level impacts academic outcomes for individuals aged 18 to 22.** We focus on three key milestones: Level 3 qualifications at age 18, full-time university participation at age 19, and Level 6 or higher qualification by age 22. These stages reflect national benchmarks for educational progression.
 
-To ensure analytical clarity, we excluded city-level data due to their distinct socio-demographic profiles—such as high population density and varied education infrastructure—which could skew comparisons. Observations with missing or ambiguous income classifications were also removed to maintain data integrity. The dataset was then grouped by income level and town size, and explored through descriptive statistics and visualisations.
+To maintain analytical consistency, cities are excluded due to their distinctive socio-demographic structures, such as dense populations and diverse education systems. We also remove entries with missing or unclear income classifications to ensure accurate results. The dataset is grouped by income level and town size, and analyzed using both summary statistics and visualizations. Trends are observed across large, medium, and small towns.
 
-Our findings reveal a consistent pattern: towns with lower levels of income deprivation tend to exhibit higher rates of educational attainment across all three milestones. These results contribute to a deeper understanding of how structural inequality shapes academic pathways and highlight the need for targeted, data-informed education policies to bridge the gap.
+Findings reveal a consistent association: **as income deprivation decreases, educational attainment increases.** This analysis deepens our understanding of structural disadvantage and supports the development of more equitable, data-driven education policies.
 
 # Research Question
 
