@@ -183,8 +183,6 @@ ggplot(edu_long, aes(x = income_flag, y = value, fill = income_flag)) +
 ```{r educational attainment barplot}
 #| label: fig-income-education-by-size
 #| fig-cap: "Educational Attainment by Income Deprivation Level and Town Size (Cities Excluded)"
-#| fig-subcap:
-#| - "Comparison of educational outcomes across income levels and town sizes"
 
 summary_df <- edu_df_clean %>%
   group_by(income_flag, size_flag) %>%
