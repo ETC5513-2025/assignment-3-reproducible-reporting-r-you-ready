@@ -1,7 +1,7 @@
 ---
 title: "From Deprivation to Degree"
 subtitle: "Exploring the Impact of Local Income Levels on Youth Education in England"
-author: Group R you OK? 
+author: "Group R you OK? ：Vicky Feng · Ruyu Li · Dev Karan Gur"
 
 format:
   html:
@@ -86,6 +86,8 @@ This study will focus on:
 
 **Does the income level of a town affect the educational outcomes of young people?**
 
+\newpage
+
 # Data Loading
 
 In this study, our group chose to **download the dataset locally** rather than relying on an online dataset. This approach **improves the reproducibility of the analysis** because local data ensures continuous access to a stable version of the data and avoids remote sources updating or deleting the data resulting in different analysis results. Also, **local datasets are more stable** as they do not rely on a network connection, which avoids interruptions due to application program interface limitations or network problems. It also improves processing speed and supports offline analysis, which is essential for **a reliable and efficient research workflow**.
@@ -114,6 +116,8 @@ edu_df_selected <- edu_df %>%
   )
 ```
 
+\newpage
+
 # Dataset introduction
 
 ## Variables Description
@@ -123,7 +127,7 @@ From @tbl-tables, the variables listed here represent a selected subset of those
 ```{r variable description}
 #| label: tbl-tables
 #| tbl-cap: 
-#| - "This table contains the key variables used in the analysis along with their descriptions"
+#| - "Key Variables Used in the Analysis"
 
 edu_variable_desc <- data.frame(
   Variable = c(
@@ -142,11 +146,18 @@ edu_variable_desc <- data.frame(
   )
 )
 
-knitr::kable(
+kable(
   edu_variable_desc,
   col.names = c("Variable Names", "Variable Description"),
-  booktabs = TRUE
-)
+  booktabs = TRUE,
+  longtable = TRUE) %>%
+  kable_styling(
+    latex_options = c("striped", "hold_position", "scale_down"),
+    stripe_color = "gray!15",
+    font_size = 10
+  ) %>%
+  column_spec(1, width = "3.5cm") %>%
+  column_spec(2, width = "11cm")
 ```
 
 ## Dataset Description
@@ -176,9 +187,14 @@ See @tbl-tableone for the detail of the first 2 rows of the data and the types o
 edu_df_selected %>%
   count(income_flag) %>%
   mutate(percentage = round(n / sum(n) * 100, 1)) %>%
-  knitr::kable(
+  kable(
     col.names = c("Income Flag", "Count", "Percentage (%)"),
-    digits = 1
+    digits = 1,
+    booktabs = TRUE) %>%
+  kable_styling(
+    latex_options = c("striped", "hold_position"),
+    stripe_color = "gray!15",
+    font_size = 10
   )
 ```
 
@@ -217,8 +233,24 @@ table1 <- edu_df_clean %>%
     "SD: Level 6 at 22" = sd_level6
   )
 
-kable(table1, digits = 2) %>%
-  kable_styling(full_width = FALSE)
+kable(table1,
+      digits   = 2,
+      booktabs = TRUE,
+      longtable = TRUE
+) %>%
+  kable_styling(
+    latex_options = c("striped", "hold_position", 
+                      "scale_down", "repeat_header", "longtable"),
+    stripe_color = "gray!15",
+    font_size = 9
+  ) %>%
+  column_spec(1, width = "2cm")  %>% 
+  column_spec(2, width = "1.8cm") %>% 
+  column_spec(3, width = "1.8cm") %>% 
+  column_spec(4, width = "1.8cm") %>% 
+  column_spec(5, width = "1.8cm") %>%
+  column_spec(6, width = "1.8cm") %>%
+  column_spec(7, width = "1.8cm")
 
 ```
 
