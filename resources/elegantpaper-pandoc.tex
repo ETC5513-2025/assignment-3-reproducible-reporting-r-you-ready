@@ -2,11 +2,23 @@
 % Original by the LaTeX3 Project (LPPL v1.3c)
 % Customized for academic assignment (colors, fonts, title formatting)
 
-\documentclass[11pt,en]{../resources/elegantpaper}
+\documentclass[
+  11pt,
+  en,
+  citestyle=apa,
+  bibstyle=apa,
+  bibend=biber
+]{../resources/elegantpaper}
 
 % Required for citation formatting with Pandoc + CSL
-\providecommand{\citeproc}[2]{\if\relax\detokenize{#2}\relax #1\else #2\fi}
-\providecommand{\citeproctext}[2]{#1}
+% \usepackage[backend=biber,style=apa]{biblatex}
+% \addbibresource{references.bib}
+$if(biblatex)$
+  \usepackage[backend=biber,style=$citation-style$]{biblatex}
+  $for(bibliography)$
+    \addbibresource{$bibliography$}
+  $endfor$
+$endif$
 
 \usepackage{bookmark}
 
@@ -20,20 +32,6 @@
   \setlength{\cslhangindent}{1.5em}
 }{}
 \makeatother
-
-% Environment for formatting CSL-based reference lists
-\newenvironment{CSLReferences}[2]
- {
-  \begin{list}{}{
-    \setlength{\leftmargin}{\cslhangindent}
-    \setlength{\itemindent}{-\cslhangindent}
-    \setlength{\itemsep}{#2\baselineskip}
-    \setlength{\parsep}{0pt}
-    \setlength{\topsep}{0pt}}
-  \setlength{\parskip}{0pt}
-  \setlength{\parindent}{0pt}
-}
-{\end{list}}
 
 % Title styling
 \usepackage{titling}

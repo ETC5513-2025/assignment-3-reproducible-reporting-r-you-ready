@@ -1,7 +1,7 @@
 ---
 title: "From Deprivation to Degree"
 subtitle: "Exploring the Impact of Local Income Levels on Youth Education in England"
-author: Group R you OK? 
+author: Group R you OK?
 
 format:
   html:
@@ -14,26 +14,25 @@ format:
     anchor-sections: true
     highlight-style: github
     css: ../resources/styles.css
+    citeproc: true
+    csl: ../resources/apa.csl
   pdf:
     pdf-engine: xelatex
     template: ../resources/elegantpaper-pandoc.tex
     citeproc: true
+    citation-package: biblatex
+    citation-style: apa
     toc: true
     number-sections: true
     fontsize: 11pt
     linestretch: 1.3
     mainfont: "TeX Gyre Pagella"
     keep-tex: true
-    
+
 bibliography: ../resources/references.bib
-csl: ../resources/apa.csl
 link-citations: true
 
-execute: 
-  code-overlay:
-    margin: "auto"
-
-crossref: 
+crossref:
   fig-title: Figure
   tbl-title: Table
   fig-prefix: Figure
@@ -94,7 +93,7 @@ Does the income level of a town affect the educational outcomes of young people?
 
 In this study, our group chose to **download the dataset locally** rather than relying on an online dataset. This approach **improves the reproducibility of the analysis** because local data ensures continuous access to a stable version of the data and avoids remote sources updating or deleting the data resulting in different analysis results. Also, **local datasets are more stable** as they do not rely on a network connection, which avoids interruptions due to application program interface limitations or network problems. It also improves processing speed and supports offline analysis, which is essential for **a reliable and efficient research workflow**.
 
-We use the english_education.csv dataset downloading from the [TidyTuesday](https://github.com/rfordatascience/tidytuesday/blob/main/data/2024/2024-01-23/english_education.csv), originally sourced from the UK Office for National Statistics (ONS) @ONS2023AcademicTowns. The dataset contains education and deprivation data for over 1,000 English towns, offering town-level observations across key variables such as income_flag, size_flag, level_3_at_age_18, activity_at_age_19_full_time_higher_education, and highest_level_qualification_achieved_by_age_22_level_6_or_above2. These indicators provide a robust basis for analyzing **educational progression** in relation to **local income deprivation**.
+We use the english_education.csv dataset downloading from the [TidyTuesday](https://github.com/rfordatascience/tidytuesday/blob/main/data/2024/2024-01-23/english_education.csv). It is originally sourced from the UK Office for National Statistics (ONS) [@ONS2023AcademicTowns]. The dataset contains education and deprivation data for over 1,000 English towns, offering town-level observations across key variables such as income_flag, size_flag, level_3_at_age_18, activity_at_age_19_full_time_higher_education, and highest_level_qualification_achieved_by_age_22_level_6_or_above2. These indicators provide a robust basis for analyzing **educational progression** in relation to **local income deprivation**.
 
 ```{r data loading}
 edu_df <- read_csv("../data/english_education.csv")
@@ -355,20 +354,18 @@ To address the disparities observed, education policy should **prioritize suppor
 
 In addition, **future research** should expand the study's dataset. There is a need to include **multiple clusters and urban areas** and to **integrate qualitative indicators** such as school quality and student support services as study variables. These efforts will contribute to **a more comprehensive understanding of how income poverty affects educational trajectories** and inform the development of more equitable education strategies.
 
+# Appendix
 ## R and R package Used
 
 Data analysis and report generation for this project uses R and a variety of supporting software packages, including data processing, visualization, and repeatable research tools.
 
 The following software and packages were used:
 
-- R [@RCore2025]
-- **dplyr** [@dplyr2023]
-- **ggplot2** [@ggplot22016]
-- **readr** [@readr2024]
-- **tidyr** [@tidyr2024]
-- **knitr** [@knitr2024; @knitrBook2015; @knitrChapter2014]
-- **kableExtra** [@kableExtra2024]
+-   R [@RCore2025].
+-   **dplyr** [@dplyr2023].
+-   **ggplot2** [@ggplot22016].
+-   **readr** [@readr2024].
+-   **tidyr** [@tidyr2024].
+-   **knitr** [@knitr2024; @knitrBook2015; @knitrChapter2014].
+-   **kableExtra** [@kableExtra2024].
 
-# References
-::: {#refs}
-:::
