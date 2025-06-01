@@ -1,7 +1,7 @@
 ---
 title: "From Deprivation to Degree"
 subtitle: "Exploring the Impact of Local Income Levels on Youth Education in England"
-author: "Group R you OK? ：Vicky Feng · Ruyu Li · Dev Karan Gur"
+author: "Group R you OK? ：Vicky Feng , Ruyu Li , Dev Karan Gur"
 
 format:
   html:
@@ -53,6 +53,8 @@ knitr::opts_chunk$set(
   fig.pos = "H",
   fig.align  = "center"
   )
+
+
 ```
 
 ```{r package loading, include=FALSE}
